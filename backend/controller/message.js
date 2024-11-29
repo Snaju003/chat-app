@@ -5,13 +5,14 @@ import User from "../models/user.js";
 
 export const sendMessage = async (req, res) => {
   try {
-    const { receiverId, text } = req.body;
+    const { message } = req.body;
+    const {id: receiverId} = req.params;
     const senderId = req.user._id;
 
-    if (!senderId || !receiverId || !text) {
+    if (!senderId || !receiverId || !message) {
       return res
         .status(400)
-        .json({ error: "Sender ID, receiver ID, and text are required." });
+        .json({ error: "Sender ID, receiver ID, and message are required." });
     }
 
     if (
@@ -26,7 +27,7 @@ export const sendMessage = async (req, res) => {
         .status(400)
         .json({ error: "Cannot send message to yourself." });
     }
-    const trimmedText = text.trim();
+    const trimmedText = message.trim();
     if (trimmedText.length === 0 || trimmedText.length > 1000) {
       return res.status(400).json({
         error: "Message must be between 1 and 1000 characters.",
@@ -42,8 +43,8 @@ export const sendMessage = async (req, res) => {
     }
 
     const newMessage = new Message({
-      senderId: req.user._id,
-      receiverId: req.params.id,
+      senderId,
+      receiverId,
       message: trimmedText,
     });
 
