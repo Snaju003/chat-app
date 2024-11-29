@@ -1,9 +1,10 @@
 import express from "express";
-import { sendMessage } from "../controller/message.js";
+import { getMessages, sendMessage } from "../controller/message.js";
 import { protectRoute } from "../middleware/message.js";
 
 const messageRouter = express.Router();
 
 messageRouter.post("/send/:id", protectRoute, sendMessage);
+messageRouter.post("/:id", protectRoute, getMessages);
 
 export default messageRouter;

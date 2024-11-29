@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 import Message from "../models/messages.js";
 import Conversation from "../models/conversation.js";
 import User from "../models/user.js";
@@ -6,51 +6,49 @@ import User from "../models/user.js";
 export const sendMessage = async (req, res) => {
   try {
     const { receiverId, text } = req.body;
-    const senderId = req.userId;
+    const senderId = req.user._id;
 
-    // Enhanced validation
     if (!senderId || !receiverId || !text) {
-      return res.status(400).json({ error: "Sender ID, receiver ID, and text are required." });
+      return res
+        .status(400)
+        .json({ error: "Sender ID, receiver ID, and text are required." });
     }
 
-    // Validate ObjectId format
-    if (!mongoose.Types.ObjectId.isValid(senderId) || 
-        !mongoose.Types.ObjectId.isValid(receiverId)) {
+    if (
+      !mongoose.Types.ObjectId.isValid(senderId) ||
+      !mongoose.Types.ObjectId.isValid(receiverId)
+    ) {
       return res.status(400).json({ error: "Invalid user ID format." });
     }
 
-    // Prevent sending message to self
     if (senderId === receiverId) {
-      return res.status(400).json({ error: "Cannot send message to yourself." });
+      return res
+        .status(400)
+        .json({ error: "Cannot send message to yourself." });
     }
-
-    // Validate text content
     const trimmedText = text.trim();
     if (trimmedText.length === 0 || trimmedText.length > 1000) {
-      return res.status(400).json({ 
-        error: "Message must be between 1 and 1000 characters." 
+      return res.status(400).json({
+        error: "Message must be between 1 and 1000 characters.",
       });
     }
 
-    // Efficient user lookup
-    const users = await User.find({ 
-      _id: { $in: [senderId, receiverId] } 
+    const users = await User.find({
+      _id: { $in: [senderId, receiverId] },
     });
 
     if (users.length !== 2) {
       return res.status(404).json({ error: "One or both users not found." });
     }
 
-    // Create new message
     const newMessage = new Message({
-      senderId,
-      receiverId,
-      text: trimmedText,
+      senderId: req.user._id,
+      receiverId: req.params.id,
+      message: trimmedText,
     });
 
     const savedMessage = await newMessage.save();
 
-    // Find or create conversation
     let conversation = await Conversation.findOne({
       participants: { $all: [senderId, receiverId] },
     });
@@ -61,22 +59,36 @@ export const sendMessage = async (req, res) => {
       });
     }
 
-    // Add message to conversation
-    conversation.messages.push(savedMessage._id);
+    conversation.message.push(savedMessage._id);
     await conversation.save();
 
     res.status(200).json(savedMessage);
   } catch (error) {
-    // More robust error handling
-    console.error('Message send error:', {
-      message: error.message,
-      stack: error.stack,
-      senderId,
-      receiverId
-    });
+    console.error("Error in sendMessage:", error);
 
-    res.status(500).json({ 
-      error: "An unexpected error occurred while processing your message." 
+    res.status(500).json({
+      error: "An unexpected error occurred while processing your message.",
+    });
+  }
+};
+
+export const getMessages = async (req, res) => {
+  try {
+    const conversationId = req.params.id;
+    const userId = req.user._id;
+    const conversation = await Conversation.findById(conversationId);
+    if (!conversation) {
+      return res.status(404).json({ error: "Conversation not found." });
+    }
+    const messages = await Message.find({
+      _id: { $in: conversation.message },
+    });
+    res.status(200).json(messages);
+  } catch (error) {
+    console.error("Error in getMessages:", error);
+
+    res.status(500).json({
+      error: "An unexpected error occurred while processing your request.",
     });
   }
 };

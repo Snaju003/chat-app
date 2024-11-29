@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.js";
 import connectToDatabase from "./db/db.js";
 import messageRouter from "./routes/message.js";
+import userRouter from "./routes/user.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
+app.use("/api/users", userRouter);
 
 app.listen(
   PORT,
