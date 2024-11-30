@@ -10,8 +10,8 @@ const ConversationList = ({ conversations, activeChat, onChatSelect }) => {
         <ConversationItem
           key={conv._id}
           conversation={conv}
-          isActive={activeChat === conv.id}
-          onSelect={() => onChatSelect(conv.id)}
+          isActive={activeChat === conv._id}
+          onSelect={() => onChatSelect(conv._id)}
         />
       ))}
     </div>

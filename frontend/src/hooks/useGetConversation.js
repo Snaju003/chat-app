@@ -12,7 +12,7 @@ const useGetConversation = () => {
         const response = await fetch("/api/users");
         const data = await response.json();
         if (data.error) {
-          throw new Error(data.error);
+          throw new Error(response.status);
         }
         setConversations(data);
       } catch (error) {
