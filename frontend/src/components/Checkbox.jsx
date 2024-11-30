@@ -26,9 +26,9 @@ const GenderCheckbox = ({
           <input 
             type="radio" 
             name="gender" 
-            value="Male"
-            checked={selectedGender === "Male"}
-            onChange={() => handleGenderChange("Male")}
+            value="male"
+            checked={selectedGender === "male"}
+            onChange={() => handleGenderChange("male")}
             className="radio radio-primary"
           />
           <span className="label-text">Male</span>
@@ -37,9 +37,9 @@ const GenderCheckbox = ({
           <input 
             type="radio" 
             name="gender" 
-            value="Female"
-            checked={selectedGender === "Female"}
-            onChange={() => handleGenderChange("Female")}
+            value="female"
+            checked={selectedGender === "female"}
+            onChange={() => handleGenderChange("female")}
             className="radio radio-primary"
           />
           <span className="label-text">Female</span>

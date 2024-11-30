@@ -6,8 +6,8 @@ import FormInput from './FormInput';
 
 const LoginForm = ({ onSubmit }) => {
   const [credentials, setCredentials] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: ""
   });
   const [error, setError] = useState('');
 

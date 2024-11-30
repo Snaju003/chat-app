@@ -2,11 +2,12 @@
 import React from 'react';
 import SignupForm from '../components/SignupForm';
 import LoginLink from '../components/LoginLink';
+import useSignup from '../hooks/useSignup';
 
 const SignupPage = () => {
-  const handleSignup = (formData) => {
-    // console.log('Form submitted', formData);
-    // Add signup logic here
+  const { signup, loading } = useSignup();
+  const handleSignup = async (formData) => {
+    await signup(formData);
   };
 
   return (
