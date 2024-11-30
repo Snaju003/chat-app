@@ -5,7 +5,7 @@ import LoginLink from '../components/LoginLink';
 
 const SignupPage = () => {
   const handleSignup = (formData) => {
-    console.log('Form submitted', formData);
+    // console.log('Form submitted', formData);
     // Add signup logic here
   };
 

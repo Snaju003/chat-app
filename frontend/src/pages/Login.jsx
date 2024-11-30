@@ -5,8 +5,8 @@ import SignupLink from '../components/SignupLink';
 
 const LoginPage = () => {
   const handleLogin = (credentials) => {
+    // console.log('Login attempt', credentials);
     // Add login logic here
-    console.log('Login attempt', credentials);
   };
 
   return (

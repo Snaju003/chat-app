@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { AtSign, Lock } from 'lucide-react';
+import { AtSign, Lock, User} from 'lucide-react';
 import FormInput from './FormInput';
-import RememberMeCheckbox from './Checkbox';
 
 const LoginForm = ({ onSubmit }) => {
   const [credentials, setCredentials] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [error, setError] = useState('');
@@ -22,8 +21,9 @@ const LoginForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!credentials.email || !credentials.password) {
-      setError('Please enter both email and password');
+    // console.log(credentials)
+    if (!credentials.username || !credentials.password) {
+      setError('Please enter both username and password');
       return;
     }
     
@@ -40,11 +40,11 @@ const LoginForm = ({ onSubmit }) => {
       )}
 
       <FormInput
-        icon={<AtSign className="absolute left-3 top-3 text-gray-400" />}
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={credentials.email}
+        icon={<User className="absolute left-3 top-3 text-gray-400" />}
+        type="username"
+        name="username"
+        placeholder="Username"
+        value={credentials.username}
         onChange={handleChange}
       />
 
@@ -56,13 +56,6 @@ const LoginForm = ({ onSubmit }) => {
         value={credentials.password}
         onChange={handleChange}
       />
-
-      <div className="flex items-center justify-between">
-        <RememberMeCheckbox />
-        <a href="/forgot-password" className="text-sm text-blue-500 hover:underline">
-          Forgot Password?
-        </a>
-      </div>
 
       <button
         type="submit"

@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^0.462.0",
+    "radio-group": "^0.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.1"
@@ -27,7 +27,9 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
+    "lucide-react": "^0.462.0",
     "postcss": "^8.4.49",
+    "shadcn": "^2.1.6",
     "tailwindcss": "^3.4.15",
     "vite": "^6.0.1"
   }
