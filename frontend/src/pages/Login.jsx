@@ -6,8 +6,10 @@ import useLogin from "../hooks/useLogin";
 
 const LoginPage = () => {
   const { login, loading } = useLogin();
+
   const handleLogin = async (credentials) => {
     await login(credentials);
+    window.location.href = "/";
   };
 
   return (

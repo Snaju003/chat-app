@@ -8,6 +8,7 @@ const SignupPage = () => {
   const { signup, loading } = useSignup();
   const handleSignup = async (formData) => {
     await signup(formData);
+    window.location.href = '/';
   };
 
   return (

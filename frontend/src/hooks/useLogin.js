@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 const useLogin = () => {
     const [loading, setLoading] = useState(false);
 
-    const login = async (username, password) => {
+    const login = async ({username, password}) => {
         setLoading(true);
         try {
             const response = await fetch('/api/auth/login', {
@@ -20,7 +20,6 @@ const useLogin = () => {
             }
             toast.success('Login successful');
             localStorage.setItem('auth-user', JSON.stringify(data));
-            return data;
         } catch (error) {
             console.error(error);
         } finally {
