@@ -15,7 +15,7 @@ const ChatSidebar = ({
   handleLogout
 }) => {
   return (
-    <div className="w-80 bg-slate-950 border-r border-gray-800 flex flex-col text-gray-200">
+    <div className="w-80 bg-slate-950 border-r border-gray-800 flex flex-col text-gray-200 gap-5">
       {/* Header */}
       <div className="p-4 flex justify-between items-center border-b border-gray-800">
         <h1 className="text-2xl font-bold flex items-center">
@@ -31,11 +31,7 @@ const ChatSidebar = ({
         </div>
       </div>
 
-      {/* Search Bar */}
-      <SearchBar 
-        searchTerm={searchTerm} 
-        onSearchChange={onSearchChange} 
-      />
+      <SearchBar/>
 
       {/* Conversation List */}
       <ConversationList 

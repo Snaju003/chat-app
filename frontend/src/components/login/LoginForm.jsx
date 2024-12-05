@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { AtSign, Lock, User} from 'lucide-react';
-import FormInput from './FormInput';
+import FormInput from '../signup/FormInput';
 
 const LoginForm = ({ onSubmit }) => {
   const [credentials, setCredentials] = useState({

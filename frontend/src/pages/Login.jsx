@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import LoginForm from "../components/LoginForm";
-import SignupLink from "../components/SignupLink";
+import LoginForm from "../components/login/LoginForm";
+import SignupLink from "../components/login/SignupLink";
 import useLogin from "../hooks/useLogin";
 
 const LoginPage = () => {
