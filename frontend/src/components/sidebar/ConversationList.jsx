@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 
 const ConversationList = ({ conversations, activeChat, onChatSelect }) => {
   return (
-    <div className='flex-grow overflow-y-auto'>
+    <div className='flex-grow overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900 scrollbar-corner-none'>
       {conversations.map((conv) => (
         <ConversationItem
           key={conv._id}
@@ -31,6 +31,7 @@ const ConversationItem = ({ conversation, isActive, onSelect }) => {
         width={40}
         height={40}
         alt='Profile Pic'
+        className='rounded-full'
       />
       <div className='flex-grow'>
         <div className='flex justify-between items-center'>

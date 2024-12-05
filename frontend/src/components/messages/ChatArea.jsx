@@ -1,29 +1,29 @@
+import useGetMessages from "../../hooks/useGetMessages";
+import MessageSkeleton from "../skeletons/MessageSkeleton";
+import Message from "./Message";
+
 /* eslint-disable react/prop-types */
-
-const ChatArea = ({ messages, receiverImg , senderImg  }) => {
-  console.log("Receiver Image:", receiverImg);
-  console.log("Sender Image:", senderImg);
-
+const ChatArea = () => {
+  const { messages, loading } = useGetMessages();
   return (
     <>
       {messages.map((message, index) => (
-        <div key={index} className={`chat ${message.isSender ? "chat-end" : "chat-start"}`}>
-          <div className="chat-image avatar">
-            <div className="w-10 rounded-full">
-              <img
-                className="object-cover w-full h-full"
-                alt={message.isSender ? "Sender's avatar" : "Receiver's avatar"}
-                src={message.isSender ? senderImg : receiverImg}
-              />
+        <div key={index} className={`chat ${message.isSender ? "chat-end" : "chat-start"}`}>         
+            <div >
+            {!loading &&
+				messages.length > 0 &&
+				messages.map((message) => (
+					<div key={message._id} ref={lastMessageRef}>
+						<Message message={message} />
+					</div>
+				))}
+
+			{loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
+			{!loading && messages.length === 0 && (
+				<p className='text-center'>Send a message to start the conversation</p>
+			)}
             </div>
           </div>
-          <div className="chat-header">
-            {message.senderName}
-            <time className="text-xs opacity-50">{message.time}</time>
-          </div>
-          <div className="chat-bubble">{message.text}</div>
-          <div className="chat-footer opacity-50">{message.status}</div>
-        </div>
       ))}
     </>
   );

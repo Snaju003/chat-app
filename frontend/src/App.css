@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.no-scrollbar-corners::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
