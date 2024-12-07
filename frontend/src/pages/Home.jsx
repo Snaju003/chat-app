@@ -1,15 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatSidebar from "../components/sidebar/ChatSideBar";
 import EmptyChatArea from "../components/EmptyChatArea";
 import useLogout from "../hooks/useLogout";
 import useGetConversations from "../hooks/useGetConversation";
-import ChatArea from "../components/messages/ChatArea";
 import MessageInput from "../components/messages/MessageInput";
 import useConversation from "../zustand/useConversation";
 import useUserDetails from "../hooks/useUserDetails";
-import useCurrentUser from "../hooks/useCurrentUser";
-import useGetMessages from "../hooks/useGetMessages";
 import Messages from "../components/messages/Messages";
 
 const ChatHome = () => {
@@ -18,10 +15,6 @@ const ChatHome = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { conversations } = useGetConversations();
   const { userDetails, loading, error } = useUserDetails(selectedConversation);
-  // const { currentUser } = useCurrentUser();
-  // const { messages } = useGetMessages();
-
-  // // console.log(messages)
 
   const handleLogout = async () => {
     await logout();
@@ -29,8 +22,9 @@ const ChatHome = () => {
     localStorage.removeItem("auth-user");
   };
 
-  // console.log(userDetails);
-  // console.log(currentUser);
+  useEffect(() => {
+    return () => {setSelectedConversation(null)};
+  }, [setSelectedConversation]);
 
   return (
     <div className='flex h-screen bg-gray-100 overflow-hidden'>
@@ -47,6 +41,7 @@ const ChatHome = () => {
       <div className='flex flex-col flex-grow'>
         {selectedConversation ? (
           <div className='flex flex-col h-full'>
+
             {/* Chat Header */}
             <div className='bg-slate-950 shadow-sm border-b border-gray-800 px-6 py-4 flex items-center justify-between'>
               <div className='flex items-center space-x-4'>
@@ -79,21 +74,6 @@ const ChatHome = () => {
 
             {/* Chat Area */}
             <div className='flex-grow bg-gray-800 overflow-y-auto p-6'>
-              {/* <ChatArea
-                messages={[
-                  {
-                    text: "You were the Chosen One!",
-                    isSender: false,
-                  },
-                  {
-                    senderName: "You",
-                    text: "I hate you!",
-                    status: "Seen at 12:46",
-                    isSender: true,
-                  },
-                ]}
-                className='space-y-4'
-              /> */}
               <Messages/>
             </div>
 
