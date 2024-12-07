@@ -1,19 +1,20 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { MessageCircle, Users, Settings, LogOut } from 'lucide-react';
+import { MessageCircle, Settings, LogOut } from 'lucide-react';
 import SearchBar from './SearchBar';
 import ConversationList from './ConversationList';
 import NewConversationButton from './NewConversationButton';
 
 const ChatSidebar = ({ 
   conversations, 
-  searchTerm, 
-  activeChat, 
-  onSearchChange, 
+  activeChat,
   onChatSelect,
   handleLogout
 }) => {
+  const handleNewConversation = (name) => {
+    // handle new conversation logic here
+    }
   return (
     <div className="w-80 bg-slate-950 border-r border-gray-800 flex flex-col text-gray-200 gap-5">
       {/* Header */}
@@ -33,15 +34,13 @@ const ChatSidebar = ({
 
       <SearchBar/>
 
-      {/* Conversation List */}
       <ConversationList 
         conversations={conversations} 
         activeChat={activeChat} 
         onChatSelect={onChatSelect} 
       />
 
-      {/* New Conversation Button */}
-      <NewConversationButton />
+      <NewConversationButton onNewConversation={handleNewConversation}/>
     </div>
   );
 };
