@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useAuthContext } from "../../context/AuthContext";
+import useUserDetails from "../../hooks/useUserDetails";
 import { extractTime } from "../../utils/extractTime";
 import useConversation from "../../zustand/useConversation";
 
@@ -9,7 +10,8 @@ const Message = ({ message }) => {
 	const fromMe = message.senderId === authUser._id;
 	const formattedTime = extractTime(message.createdAt);
 	const chatClassName = fromMe ? "chat-end" : "chat-start";
-	const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
+	const { userDetails } = useUserDetails(selectedConversation);
+	const profilePic = fromMe ? authUser.profilepic : userDetails?.profilepic;
 	const bubbleBgColor = fromMe ? "bg-blue-500" : "";
 
 	const shakeClass = message.shouldShake ? "shake" : "";
