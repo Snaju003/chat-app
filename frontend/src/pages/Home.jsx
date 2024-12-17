@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import ChatSidebar from "../components/sidebar/ChatSideBar";
 import EmptyChatArea from "../components/EmptyChatArea";
@@ -25,6 +24,9 @@ const ChatHome = () => {
   useEffect(() => {
     return () => {setSelectedConversation(null)};
   }, [setSelectedConversation]);
+
+  // Filter conversations to only include those with messages
+  // const filteredConversations = conversations.filter(conversation => conversation.messages && conversation.messages.length > 0);
 
   return (
     <div className='flex h-screen bg-gray-100 overflow-hidden'>

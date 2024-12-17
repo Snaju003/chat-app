@@ -1,21 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { AtSign, Lock, User} from 'lucide-react';
-import FormInput from '../signup/FormInput';
+import React, { useState } from "react";
+import { Lock, User } from "lucide-react";
+import FormInput from "../signup/FormInput";
 
 const LoginForm = ({ onSubmit }) => {
   const [credentials, setCredentials] = useState({
     username: "",
-    password: ""
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials(prev => ({
+    setCredentials((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -23,12 +23,12 @@ const LoginForm = ({ onSubmit }) => {
     e.preventDefault();
     // console.log(credentials)
     if (!credentials.username || !credentials.password) {
-      setError('Please enter both username and password');
+      setError("Please enter both username and password");
       return;
     }
-    
+
     onSubmit(credentials);
-    setError('');
+    setError("");
   };
 
   return (
@@ -59,8 +59,7 @@ const LoginForm = ({ onSubmit }) => {
 
       <button
         type="submit"
-        className="w-full bg-indigo-800 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-300"
-      >
+        className="w-full bg-indigo-800 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-300">
         Log In
       </button>
     </form>

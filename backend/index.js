@@ -7,10 +7,9 @@ import authRouter from "./routes/auth.js";
 import connectToDatabase from "./db/db.js";
 import messageRouter from "./routes/message.js";
 import userRouter from "./routes/user.js";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
-
-const app = express();
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,8 +22,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/users", userRouter);
 
-app.listen(
+server.listen(
   PORT,
-  console.log(`server listening on ${PORT}`),
-  connectToDatabase()
+  connectToDatabase(),
+  console.log(`server listening on ${PORT}`)
 );
