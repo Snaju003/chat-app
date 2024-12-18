@@ -18,16 +18,16 @@ function App() {
     <div className="h-screen w-screen">
       <Routes>
         <Route
-          path="/signup"
-          element={authUser ? <Navigate to="/" /> : <SignupPage />}
+          path="/"
+          element={authUser ? <ChatHome /> : <Navigate to={"/login"} />}
         />
         <Route
           path="/login"
           element={authUser ? <Navigate to="/" /> : <LoginPage />}
         />
         <Route
-          path="/"
-          element={authUser ? <ChatHome /> : <Navigate to="/login" />}
+          path="/signup"
+          element={authUser ? <Navigate to="/" /> : <SignupPage />}
         />
       </Routes>
       <Toaster />

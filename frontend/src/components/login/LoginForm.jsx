@@ -3,13 +3,15 @@
 import React, { useState } from "react";
 import { Lock, User } from "lucide-react";
 import FormInput from "../signup/FormInput";
+import useLogin from "../../hooks/useLogin";
 
 const LoginForm = ({ onSubmit }) => {
+  const [error, setError] = useState("");
+  const { login, loading } = useLogin();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,16 +21,9 @@ const LoginForm = ({ onSubmit }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(credentials)
-    if (!credentials.username || !credentials.password) {
-      setError("Please enter both username and password");
-      return;
-    }
-
-    onSubmit(credentials);
-    setError("");
+    await login(credentials.username, credentials.password);
   };
 
   return (

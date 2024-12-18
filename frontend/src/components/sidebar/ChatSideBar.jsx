@@ -4,7 +4,6 @@ import React from 'react';
 import { MessageCircle, Settings, LogOut } from 'lucide-react';
 import SearchBar from './SearchBar';
 import ConversationList from './ConversationList';
-import NewConversationButton from './NewConversationButton';
 
 const ChatSidebar = ({ 
   conversations, 
