@@ -52,4 +52,3 @@ const ConversationItem = ({ conversation, isActive, onSelect, isOnline }) => {
 };
 
 export default ConversationList;
-

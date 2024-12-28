@@ -22,8 +22,6 @@ const ChatHome = () => {
 
   const handleLogout = async () => {
     await logout();
-    localStorage.removeItem("token");
-    localStorage.removeItem("auth-user");
   };
 
   useEffect(() => {
@@ -101,8 +99,8 @@ const ChatHome = () => {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-grow bg-gray-800 overflow-y-auto p-4 md:p-6">
-              <Messages />
+            <div className="flex-grow bg-gray-800 overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900 scrollbar-corner-none p-4 md:p-6">
+                <Messages />
             </div>
 
             {/* Message Input */}
@@ -127,4 +125,3 @@ const ChatHome = () => {
 };
 
 export default ChatHome;
-
