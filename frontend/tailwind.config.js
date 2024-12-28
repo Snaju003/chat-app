@@ -1,17 +1,13 @@
+import daisyui from "daisyui";
+import tailwindScrollbar from "tailwind-scrollbar";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      scrollbar: ["rounded"],
+    },
   },
-  plugins: [
-    // eslint-disable-next-line no-undef
-    require("daisyui"),
-    // eslint-disable-next-line no-undef
-    require('tailwind-scrollbar'),
-  ],
-  variants: {
-    scrollbar: ["rounded"],
-  },
-  
+  plugins: [daisyui, tailwindScrollbar],
 };
