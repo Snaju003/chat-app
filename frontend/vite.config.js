@@ -8,7 +8,7 @@ export default defineConfig({
       '/api': {
         target: 'https://chit-chat-q27g.onrender.com', // Replace with your backend server URL
         changeOrigin: true,
-        secure: false
+        secure: true,
       }
     }
   }
