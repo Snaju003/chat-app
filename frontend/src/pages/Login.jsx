@@ -2,10 +2,10 @@
 import React from "react";
 import LoginForm from "../components/login/LoginForm";
 import SignupLink from "../components/login/SignupLink";
-import useLogin from "../hooks/useLogin";
+import { useAuthContext } from "../context/AuthContext";
 
 const LoginPage = () => {
-  const { login, loading } = useLogin();
+  const { login, loading } = useAuthContext();
 
   const handleLogin = async (credentials) => {
     await login(credentials);

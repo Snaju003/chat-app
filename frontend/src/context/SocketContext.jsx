@@ -16,7 +16,7 @@ const SocketContextProvider = ({ children }) => {
   const { authUser } = useAuthContext();
 
   useEffect(() => {
-    if (authUser) {
+    if (authUser && authUser._id) {
       const socket = io("http://localhost:5000", {
         query: {
           userId: authUser._id,

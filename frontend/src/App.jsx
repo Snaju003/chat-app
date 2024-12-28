@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   const { authUser } = useAuthContext();
+  // console.log(authUser);
   return (
     <div className="h-screen w-screen">
       <Routes>
@@ -23,7 +24,7 @@ function App() {
         />
         <Route
           path="/login"
-          element={authUser ? <Navigate to="/" /> : <LoginPage />}
+          element={authUser? <Navigate to="/" /> : <LoginPage />}
         />
         <Route
           path="/signup"

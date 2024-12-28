@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { Lock, User } from "lucide-react";
 import FormInput from "../signup/FormInput";
-import useLogin from "../../hooks/useLogin";
+import { useAuthContext } from "../../context/AuthContext";
 
 const LoginForm = ({ onSubmit }) => {
   const [error, setError] = useState("");
-  const { login, loading } = useLogin();
+  const { login, loading } = useAuthContext();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",

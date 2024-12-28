@@ -2,10 +2,10 @@
 import React from 'react';
 import SignupForm from '../components/signup/SignupForm';
 import LoginLink from '../components/signup/LoginLink';
-import useSignup from '../hooks/useSignup';
+import { useAuthContext } from '../context/AuthContext';
 
 const SignupPage = () => {
-  const { signup, loading } = useSignup();
+  const { signup, loading } = useAuthContext();
   const handleSignup = async (formData) => {
     await signup(formData);
     window.location.href = '/';

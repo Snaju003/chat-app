@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from "react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight } from 'lucide-react';
 import { useSocketContext } from "../../context/SocketContext";
 
 const ConversationList = ({ conversations, activeChat, onChatSelect }) => {
-  const {onlineUsers} = useSocketContext();
+  const { onlineUsers } = useSocketContext();
   const isOnline = (id) => onlineUsers.includes(id);
   
   return (
@@ -26,31 +24,32 @@ const ConversationList = ({ conversations, activeChat, onChatSelect }) => {
 const ConversationItem = ({ conversation, isActive, onSelect, isOnline }) => {
   return (
     <div
-      className={`p-4 gap-7 flex items-center hover:bg-gray-800 cursor-pointer ${
+      className={`p-3 md:p-4 gap-3 md:gap-4 flex items-center hover:bg-gray-800 cursor-pointer transition-colors ${
         isActive ? "bg-indigo-950" : ""
       }`}
       onClick={onSelect}
     >
-      <div className="relative">
+      <div className="relative flex-shrink-0">
         <img
           src={conversation.profilepic}
           width={40}
           height={40}
           alt='Profile Pic'
-          className='rounded-full'
+          className='rounded-full w-8 h-8 md:w-10 md:h-10 object-cover'
         />
         {isOnline && (
-          <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+          <span className="absolute bottom-0 right-0 w-2 h-2 md:w-3 md:h-3 bg-green-500 rounded-full border-2 border-slate-950"></span>
         )}
       </div>
-      <div className='flex-grow'>
+      <div className='flex-grow min-w-0'>
         <div className='flex justify-between items-center'>
-          <h3 className='font-semibold'>{conversation.fullname}</h3>
+          <h3 className='font-semibold text-sm md:text-base truncate'>{conversation.fullname}</h3>
         </div>
       </div>
-      <ChevronRight className='text-gray-400' size={20} />
+      <ChevronRight className='text-gray-400 flex-shrink-0' size={16} />
     </div>
   );
 };
 
 export default ConversationList;
+
