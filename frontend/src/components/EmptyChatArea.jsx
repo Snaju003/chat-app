@@ -14,7 +14,7 @@ const EmptyChatArea = ({ setIsSidebarOpen }) => {
       <div className="text-center">
         <MessageCircle size={64} className="mx-auto text-gray-400 mb-4" />
         <h1 className="text-xl md:text-2xl font-semibold text-gray-400 pb-5">
-          Welcome {authUser.fullName}
+          Welcome {authUser.fullname}
         </h1>
         <div>
           <button
