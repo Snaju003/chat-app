@@ -6,11 +6,5 @@
     ],
     "routes": [
       { "src": "/api/(.*)", "dest": "backend/index.js" }
-    ],
-    "rewrites": [
-    {
-      "source": "./frontend/(.*)",
-      "destination": "./frontend/index.html"
-    }
-  ]
+    ]
   }  
